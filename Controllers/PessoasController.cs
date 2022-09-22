@@ -54,7 +54,7 @@ namespace funcionadenovo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,nome")] Pessoas pessoas)
+        public async Task<IActionResult> Create([Bind("id,nome,idade,naosei")] Pessoas pessoas)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace funcionadenovo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,nome")] Pessoas pessoas)
+        public async Task<IActionResult> Edit(int id, [Bind("id,nome,idade,naosei")] Pessoas pessoas)
         {
             if (id != pessoas.id)
             {
