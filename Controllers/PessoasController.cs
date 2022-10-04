@@ -22,7 +22,13 @@ namespace funcionadenovo.Controllers
         // GET: Pessoas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Pessoas.ToListAsync());
+            var model = new Tabela
+            {
+                Pessoas = await _context.Pessoas.ToListAsync(),
+                Produtos = await _context.Produtos.ToListAsync()
+            };
+            return View(model);
+            //return View(await _context.Pessoas.ToListAsync());
         }
 
         // GET: Pessoas/Details/5

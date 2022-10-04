@@ -7,7 +7,7 @@ namespace funcionadenovo.Models
 {
     public class Tabela
     {
-        public int id { get; set; }
-        public string nome { get; set; }
+        public IEnumerable<Pessoas> Pessoas{ get; set; }
+        public IEnumerable<Produtos> Produtos{ get; set; }
     }
 }

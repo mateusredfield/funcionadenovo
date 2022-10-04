@@ -13,6 +13,7 @@ namespace funcionadenovo.Data
         { 
         }
         public DbSet<Pessoas> Pessoas { get; set; }
+        public DbSet<Produtos> Produtos { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=SEPLAN-0368\SQLEXPRESS;Database=devPessoa;Trusted_Connection=True;");
