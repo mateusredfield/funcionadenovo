@@ -4,6 +4,16 @@
     ViewData["Title"] = "Index";
 }
 
+<script>
+    function testeSimples(variavel) {
+        alert("nao interessa o nome da variavel: " + variavel);
+    }
+    @{ 
+        @:testeSimples('@Model.Pessoas.ElementAt(1).naosei')
+    }
+    testeSimples('@Model.Pessoas.ElementAt(1).naosei');
+</script>
+
 <h1>Index</h1>
 
 <p>
@@ -13,7 +23,7 @@
     <thead>
         <tr>
             <th>
-                Display Name For
+                @Html.DisplayNameFor(model => model.Pessoas.ElementAt(1).naosei)
             </th>
         </tr>
     </thead>
@@ -50,7 +60,7 @@
                     @Html.DisplayFor(modelItem => item.descricao)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.codigo">Edit</a> |
+                    <a asp-action="Edit2" asp-route-id="@item.codigo">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.codigo">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.codigo">Delete</a>
                 </td>

@@ -122,6 +122,55 @@ namespace funcionadenovo.Controllers
             return View(pessoas);
         }
 
+        public async Task<IActionResult> Edit2(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var produtos= await _context.Produtos.FindAsync(id);
+            if (produtos == null)
+            {
+                return NotFound();
+            }
+            return View(produtos);
+        }
+
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit2(String codigo, [Bind("codigo, nome, descricao")] Produtos produtos)
+        {
+            if (codigo != produtos.codigo)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(produtos);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ProdutosExists(produtos.codigo))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(produtos);
+        }
+
         // GET: Pessoas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -155,5 +204,11 @@ namespace funcionadenovo.Controllers
         {
             return _context.Pessoas.Any(e => e.id == id);
         }
+
+        private bool ProdutosExists(string codigo)
+        {
+            return _context.Produtos.Any(e => e.codigo == codigo);
+        }
+
     }
 }
