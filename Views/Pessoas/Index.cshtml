@@ -5,13 +5,13 @@
 }
 
 <script>
-    function testeSimples(variavel) {
+    @*function testeSimples(variavel) {
         alert("nao interessa o nome da variavel: " + variavel);
     }
     @{ 
         @:testeSimples('@Model.Pessoas.ElementAt(1).naosei')
     }
-    testeSimples('@Model.Pessoas.ElementAt(1).naosei');
+    testeSimples('@Model.Pessoas.ElementAt(1).naosei');*@
 </script>
 
 <h1>Index</h1>
@@ -23,27 +23,27 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Pessoas.ElementAt(1).naosei)
+                @Html.DisplayNameFor(m => m.Pessoas.ElementAt(1).naosei)
             </th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Pessoas)
+        @foreach (var pessoa in Model.Pessoas)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.nome)
+                    @Html.DisplayFor(modelItem => pessoa.nome)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.idade)
+                    @Html.DisplayFor(modelItem => pessoa.idade)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.naosei)
+                    @Html.DisplayFor(modelItem => pessoa.naosei)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@pessoa.id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@pessoa.id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@pessoa.id">Delete</a>
                 </td>
             </tr>
         }
@@ -61,8 +61,8 @@
                 </td>
                 <td>
                     <a asp-action="Edit2" asp-route-id="@item.codigo">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.codigo">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.codigo">Delete</a>
+                    <a asp-action="Details2" asp-route-codigo="@item.codigo">Details</a> |
+                    <a asp-action="Delete2" asp-route-id="@item.codigo">Delete</a>
                 </td>
             </tr>
         }

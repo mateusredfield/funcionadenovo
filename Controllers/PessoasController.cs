@@ -141,23 +141,20 @@ namespace funcionadenovo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit2(String codigo, [Bind("codigo, nome, descricao")] Produtos produtos)
+        public async Task<IActionResult> Edit2(String codigo, [Bind("codigo, nome, descricao")] Produtos produto)
         {
-            if (codigo != produtos.codigo)
-            {
-                return NotFound();
-            }
+            if (codigo != produto.codigo){  return NotFound();}
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(produtos);
+                    _context.Update(produto);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProdutosExists(produtos.codigo))
+                    if (!ProdutosExists(produto.codigo))
                     {
                         return NotFound();
                     }
@@ -166,8 +163,29 @@ namespace funcionadenovo.Controllers
                         throw;
                     }
                 }
+                //return RedirectToAction("Index", "Home");
                 return RedirectToAction(nameof(Index));
             }
+            return View(produto);
+        }
+
+        // GET: Pessoas/Details/5
+        //public async Task<IActionResult> Details2(string codigo)
+        [Route("Pessoas/Details2/{codigo?}")]
+        public async Task<IActionResult> Details2([FromRoute] string codigo)
+        {
+            if (codigo == null)
+            {
+                return NotFound();
+            }
+
+            var produtos = await _context.Produtos
+                .FirstOrDefaultAsync(m => m.codigo == codigo);
+            if (produtos == null)
+            {
+                return NotFound();
+            }
+
             return View(produtos);
         }
 
