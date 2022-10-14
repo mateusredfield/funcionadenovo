@@ -27,6 +27,14 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.codigo">Edit</a> |
+    @{
+        var parametros = new Dictionary<string, string>{
+                { "id1", Model.codigo},
+                { "id2", "2"}
+        };
+    }
+    <a asp-action="Edit2" asp-route-id="@Model.codigo">Edit</a> |
+    <a asp-route="naointeressa" asp-all-route-data="parametros">Dificil</a> |
+    <a asp-action="naosei" asp-route-id1="a" asp-route-id2="b">Mult Args</a> |
     <a asp-action="Index">Back to List</a>
 </div>

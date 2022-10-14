@@ -7,7 +7,7 @@
 <h1>Edit2</h1>
 
 <hr />
-<div class="row">
+@*<div class="row">
     <div class="col-md-4">
         <form asp-action="Edit2">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -22,12 +22,133 @@
             </div>
         </form>
     </div>
+</div>*@
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit2Manual">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="codigo" />
+            <div class="form-group">
+                <label asp-for="nome" class="control-label"></label>
+                <input asp-for="nome" class="form-control" />
+                <span asp-validation-for="nome" class="text-danger"></span>
+                <label asp-for="descricao" class="control-label"></label>
+                <input asp-for="descricao" class="form-control" />
+                <span asp-validation-for="descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit - funcionadenovo</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/site.css">
+    <meta id="dcngeagmmhegagicpcmpinaoklddcgon">
+</head>
+<body cz-shortcut-listen="true">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" href="/">funcionadenovo</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/Home/Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+
+
+            <h1>Edit2</h1>
+
+            <hr>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <form action="/Pessoas/Edit2Manual" method="post">
+
+                        <input type="hidden" id="codigo" name="codigo" value="b">
+                        <div class="form-group">
+                            <label class="control-label" for="nome">nome</label>
+                            <input class="form-control" type="text" id="nome" name="nome" value="nome b Edicao">
+                            <span class="text-danger field-validation-valid" data-valmsg-for="nome" data-valmsg-replace="true"></span>
+                            <label class="control-label" for="descricao">descricao</label>
+                            <input class="form-control" type="text" id="descricao" name="descricao" value="descricao b Edicao">
+                            <span class="text-danger field-validation-valid" data-valmsg-for="descricao" data-valmsg-replace="true"></span>
+                        </div>
+                        <div class="form-group text-center">
+                            <input type="submit" value="Save" class="btn btn-primary">
+                        </div>
+                        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8MCjMKTR2GtDqPqEDRc3TfkNQbcxOjLYur1H-IPG4pDSGHwYKUBkFEt9CI3bS-rTXEbLzBS1lLTSSM2UfB3tj9Ey7PHYxD0BvozYMaCHCJ-9aN4NFgAWrxOvfkwWSMfba-9WH0PF1zR4FqdqXW7v99E">
+                    </form>
+                </div>
+            </div>
+
+
+            <div class="text-center">
+                <a href="/Pessoas">Back to List</a>
+            </div>
+
+
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            © 2022 - funcionadenovo - <a href="/Home/Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0"></script>
+
+    <script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+
+
+</body>
+</html>*@

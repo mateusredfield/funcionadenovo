@@ -169,8 +169,39 @@ namespace funcionadenovo.Controllers
             return View(produto);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit2Manual(String codigo, [Bind("codigo, nome, descricao")] Produtos produto)
+        {
+            if (codigo != produto.codigo) { return NotFound(); }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(produto);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ProdutosExists(produto.codigo))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                //return RedirectToAction("Index", "Home");
+                return RedirectToAction(nameof(Index));
+            }
+            return View(produto);
+        }
+
         // GET: Pessoas/Details/5
         //public async Task<IActionResult> Details2(string codigo)
+        //[Route("Pessoas/Pessoas/Pessoas/Pessoas/Pessoas/Pessoas/Pessoas/Pessoas/Details2/{codigo?}", Name = "Pessoa-Details")]
         [Route("Pessoas/Details2/{codigo?}")]
         public async Task<IActionResult> Details2([FromRoute] string codigo)
         {
@@ -179,14 +210,20 @@ namespace funcionadenovo.Controllers
                 return NotFound();
             }
 
-            var produtos = await _context.Produtos
+            var produto = await _context.Produtos
                 .FirstOrDefaultAsync(m => m.codigo == codigo);
-            if (produtos == null)
+            if (produto == null)
             {
                 return NotFound();
             }
 
-            return View(produtos);
+            return View(produto);
+        }
+
+        [Route("Pessoas/naosei/id1/{id1?}/id2/{id2?}", Name ="naointeressa")]
+        public async Task<IActionResult> naosei([FromRoute] string id1, [FromRoute] string id2)
+        {
+            return Ok(Json(new { id1, id2}));
         }
 
         // GET: Pessoas/Delete/5
@@ -212,8 +249,8 @@ namespace funcionadenovo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var pessoas = await _context.Pessoas.FindAsync(id);
-            _context.Pessoas.Remove(pessoas);
+            var pessoa = await _context.Pessoas.FindAsync(id);
+            _context.Pessoas.Remove(pessoa);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
